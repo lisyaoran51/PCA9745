@@ -88,10 +88,10 @@ static void transfer(int fd)
 	if (ret < 1)
 		pabort("can't send spi message");
 
-	for (ret = 0; ret < ARRAY_SIZE(tx); ret++) {
+	for (ret = 0; ret < ARRAY_SIZE(tx2); ret++) {
 		if (!(ret % 6))
 			puts("");
-		printf("%.2X ", rx[ret]);
+		printf("%.2X ", rx2[ret]);
 	}
 	puts("");
 }
