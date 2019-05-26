@@ -197,7 +197,7 @@ int main(int argc, char *argv[])
 	/*
 	 * spi mode
 	 */
-	 mode = 0x03
+	 mode = 0x03;
 	ret = ioctl(fd, SPI_IOC_WR_MODE, &mode);
 	if (ret == -1)
 		pabort("can't set spi mode");
