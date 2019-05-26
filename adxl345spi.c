@@ -165,7 +165,7 @@ int main(int argc, char *argv[]) {
         for (i = 0; i < 0x40; i++) {
             data[0] = i;
             bytes = readBytes(h, data, 2);
-			printf("%X %X\n ", data[0], data[1]);
+			printf("%X %X %X\n ",i , data[0], data[1]);
 			continue;
 			
             if (bytes == 7) {
