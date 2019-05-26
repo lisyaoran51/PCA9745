@@ -215,7 +215,7 @@ int main(int argc, char *argv[])
 	printf("max speed: %d Hz (%d KHz)\n", speed, speed/1000);
 
 	int i;
-	for(i = 0; i < 0x40; i++)
+	for(i = 0; i < 0x100; i++)
 		transfer(fd, i);
 
 	close(fd);
