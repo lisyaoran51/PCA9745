@@ -162,10 +162,10 @@ int main(int argc, char *argv[]) {
         }
         // real reads happen here
         tStart = time_time();
-        for (i = 0; i < 0x40; i++) {
+        for (i = 0; i < 0x46; i++) {
             data[0] = i;
             bytes = readBytes(h, data, 2);
-			printf("%2X %X \n ",i , data[1]);
+			printf("%2X %X %X \n",i , data[0], data[1]);
 			continue;
 			
             if (bytes == 7) {
@@ -184,7 +184,7 @@ int main(int argc, char *argv[]) {
         }
         gpioTerminate();
         tDuration = time_time() - tStart;  // need to update current time to give a closer estimate of sampling rate
-        printf("%d samples read in %.2f seconds with sampling rate %.1f Hz\n", samples, tDuration, samples/tDuration);
+        //printf("%d samples read in %.2f seconds with sampling rate %.1f Hz\n", samples, tDuration, samples/tDuration);
         if (success == 0) {
             printf("Error occurred!");
             return 1;
