@@ -49,30 +49,13 @@ static uint8_t bits = 8;
 static uint32_t speed = 5000000;
 static uint16_t delay;
 
-static void transfer(int fd)
+static void transfer(int fd, uint8_t reg)
 {
 	int ret;
-	uint8_t tx[] = {
-		0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
-		0x40, 0x00, 0x00, 0x00, 0x00, 0x95,
-		0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
-		0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
-		0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
-		0xDE, 0xAD, 0xBE, 0xEF, 0xBA, 0xAD,
-		0xF0, 0x0D,
-	};
-	uint8_t rx[ARRAY_SIZE(tx)] = {0, };
-	struct spi_ioc_transfer tr = {
-		.tx_buf = (unsigned long)tx,
-		.rx_buf = (unsigned long)rx,
-		.len = ARRAY_SIZE(tx),
-		.delay_usecs = delay,
-		.speed_hz = speed,
-		.bits_per_word = bits,
-	};
+	
 	
 	uint8_t tx2[] = {
-		ADXL34X_READCMD(0x00), 0x00,
+		ADXL34X_READCMD(reg), 
 	};
 	uint8_t rx2[ARRAY_SIZE(tx)] = {0, };
 	struct spi_ioc_transfer tr2 = {
@@ -232,7 +215,9 @@ int main(int argc, char *argv[])
 	printf("bits per word: %d\n", bits);
 	printf("max speed: %d Hz (%d KHz)\n", speed, speed/1000);
 
-	transfer(fd);
+	int i;
+	for(i = 0; i < 0x40; i++)
+		transfer(fd, i);
 
 	close(fd);
 
