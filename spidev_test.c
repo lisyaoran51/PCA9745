@@ -70,7 +70,7 @@ static void transfer(int fd, uint8_t reg)
 	
 	
 
-	ret = ioctl(fd, SPI_IOC_MESSAGE(2), &tr2);
+	ret = ioctl(fd, SPI_IOC_MESSAGE(3), &tr2);
 	if (ret < 1)
 		pabort("can't send spi message");
 
