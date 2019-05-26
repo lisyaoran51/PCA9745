@@ -12,7 +12,7 @@
 #define BW_RATE       0x2C
 #define POWER_CTL     0x2D
 #define DATAX0        0x32
-#define DATAX		  0x00
+#define DATAX		  0x33
 
 const char codeVersion[3] = "0.2";  // code version number
 const int timeDefault = 5;  // default duration of data stream, seconds
@@ -165,7 +165,7 @@ int main(int argc, char *argv[]) {
         for (i = 0; i < 1; i++) {
             data[0] = DATAX;
             bytes = readBytes(h, data, 1);
-			printf("%X ", data[0]);
+			printf("%X\n ", data[0]);
 			continue;
 			
             if (bytes == 7) {
