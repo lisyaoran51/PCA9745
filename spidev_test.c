@@ -55,7 +55,7 @@ static void transfer(int fd, uint8_t reg)
 	
 	
 	uint8_t tx2[] = {
-		ADXL34X_READCMD(reg), 
+		ADXL34X_READCMD(reg), ADXL34X_READCMD(reg+1)
 	};
 	uint8_t rx2[ARRAY_SIZE(tx2)] = {0, };
 	struct spi_ioc_transfer tr2 = {
@@ -74,11 +74,9 @@ static void transfer(int fd, uint8_t reg)
 		pabort("can't send spi message");
 
 	for (ret = 0; ret < ARRAY_SIZE(tx2); ret++) {
-		if (!(ret % 6))
-			puts("");
-		printf("%.2X ", rx2[ret]);
+		printf("%.2X %.2X ", reg , rx2[ret]);
 	}
-	puts("");
+	//puts("");
 }
 
 static void print_usage(const char *prog)
