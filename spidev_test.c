@@ -74,7 +74,7 @@ static void transfer(int fd, uint8_t reg)
 		pabort("can't send spi message");
 
 	for (ret = 0; ret < ARRAY_SIZE(tx2); ret++) {
-		printf("%.2X %.2X ", reg , rx2[ret]);
+		printf("%.2X %.2X \n", reg , rx2[ret]);
 	}
 	//puts("");
 }
