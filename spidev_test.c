@@ -46,7 +46,7 @@ static void pabort(const char *s)
 static const char *device = "/dev/spidev0.0";
 static uint8_t mode;
 static uint8_t bits = 8;
-static uint32_t speed = 5000000;
+static uint32_t speed = 500000;
 static uint16_t delay;
 
 static void transfer(int fd, uint8_t reg)
@@ -55,8 +55,8 @@ static void transfer(int fd, uint8_t reg)
 	
 	
 	uint8_t tx2[] = {
-		//ADXL34X_READCMD(reg), ADXL34X_READCMD(reg+1),
-		reg, reg+1,
+		ADXL34X_READCMD(reg), ADXL34X_READCMD(reg+1),
+		//reg, reg+1,
 	};
 	uint8_t rx2[ARRAY_SIZE(tx2)] = {0, };
 	struct spi_ioc_transfer tr2 = {
