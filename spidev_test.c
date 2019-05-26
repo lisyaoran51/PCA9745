@@ -72,7 +72,7 @@ static void transfer(int fd)
 	};
 	
 	uint8_t tx2[] = {
-		ADXL34X_READCMD(0x00), 
+		ADXL34X_READCMD(0x00), 0x00,
 	};
 	uint8_t rx2[ARRAY_SIZE(tx)] = {0, };
 	struct spi_ioc_transfer tr2 = {
