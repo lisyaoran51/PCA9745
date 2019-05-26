@@ -12,6 +12,7 @@
 #define BW_RATE       0x2C
 #define POWER_CTL     0x2D
 #define DATAX0        0x32
+#define DATAX		  0x00
 
 const char codeVersion[3] = "0.2";  // code version number
 const int timeDefault = 5;  // default duration of data stream, seconds
@@ -161,9 +162,12 @@ int main(int argc, char *argv[]) {
         }
         // real reads happen here
         tStart = time_time();
-        for (i = 0; i < samples; i++) {
-            data[0] = DATAX0;
-            bytes = readBytes(h, data, 7);
+        for (i = 0; i < 1; i++) {
+            data[0] = DATAX;
+            bytes = readBytes(h, data, 1);
+			printf("%X ", data[0]);
+			continue;
+			
             if (bytes == 7) {
                 x = (data[2]<<8)|data[1];
                 y = (data[4]<<8)|data[3];
@@ -175,7 +179,8 @@ int main(int argc, char *argv[]) {
             else {
                 success = 0;
             }
-            time_sleep(delay);  // pigpio sleep is accurate enough for console output, not necessary to use nanosleep
+			time_sleep(delay);
+              // pigpio sleep is accurate enough for console output, not necessary to use nanosleep
         }
         gpioTerminate();
         tDuration = time_time() - tStart;  // need to update current time to give a closer estimate of sampling rate
