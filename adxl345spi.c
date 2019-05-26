@@ -164,7 +164,7 @@ int main(int argc, char *argv[]) {
         }
         // real reads happen here
         tStart = time_time();
-        for (i = 0; i < 0x46; i++) {
+        for (i = 0; i < 0x100; i++) {
             data[0] = i;
             bytes = readBytes(h, data, 2);
 			printf("%2X %X %X \n",i , data[0], data[1]);
