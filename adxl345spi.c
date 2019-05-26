@@ -133,6 +133,7 @@ int main(int argc, char *argv[]) {
         return 1;
     }
     h = spiOpen(0, speedSPI, 3);
+	/*
     data[0] = BW_RATE;
     data[1] = 0x0F;
     writeBytes(h, data, 2);
@@ -143,6 +144,7 @@ int main(int argc, char *argv[]) {
     data[1] = 0x08;
     writeBytes(h, data, 2);
 
+	*/
     double delay = 1.0 / vFreq;  // delay between reads in seconds
 
     // depending from the output mode (print to cmdline / save to file) data is read in different ways
